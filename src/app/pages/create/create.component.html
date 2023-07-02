@@ -1,0 +1,14 @@
+<h2 class="create-title">Pick one from each of the following:</h2>
+<div class="create-container">
+  <app-card-slider question="Genre" [options]="['Random', 'Rock', 'Jazz', 'Classical']"
+    (optionSelected)="genreSelected($event)"></app-card-slider>
+  <app-card-slider question="Tempo" [options]="['Random', 'Slow', 'Medium', 'Fast']"
+    (optionSelected)="tempoSelected($event)"></app-card-slider>
+  <app-card-slider question="Mood" [options]="['Random', 'Happy', 'Sad', 'Energetic']"
+    (optionSelected)="moodSelected($event)"></app-card-slider>
+  <app-card-slider question="Artist" [options]="['Random', 'Beyoncé', 'Eminem', 'Taylor Swift']"
+    (optionSelected)="artistSelected($event)"></app-card-slider>
+</div>
+<div class="sub">
+  <button class="create-btn" (click)="submit()">Submit</button>
+</div>

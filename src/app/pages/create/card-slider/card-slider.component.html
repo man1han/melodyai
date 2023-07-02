@@ -1,0 +1,10 @@
+<div class="question-container" >
+  <h3 class="question">{{ question }}</h3>
+  <div class="options">
+    <label class="label" *ngFor="let option of options" [ngClass]="{ 'selected': option === selectedOption }">
+      <input type="radio" name="{{ question }}" (click)="selectOption(option)">
+      {{ option }}
+    </label>
+  </div>
+
+</div>

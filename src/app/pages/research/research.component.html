@@ -1,0 +1,350 @@
+<div class="research-container">
+    <div class="page">
+        <h1 class="research-title">Melody AI: A Deep Learning Network for Music Generation</h1>
+        <p class="chapter"><span>Abstract</span></p>
+        <p class="para">Our research focuses on addressing the distinctive structural differences in
+            melodic content among genres like jazz, classical, and pop, which require dedicated
+            representation during
+            training and generation. By expanding the existing training architecture, our research aims to
+            introduce
+            stylistic features to the LSTM network for generating melodies. We believe that incorporating
+            such features
+            will enable the deep learning models to produce music in various styles based on their training
+            on labeled
+            datasets. Our primary objective is to establish a proof of concept that demonstrates the
+            capability of deep
+            learning models in generating diverse styles of music.</p>
+        <p class="c14"><span class="c2 c1">Introduction:</span></p>
+        <p class="c10"><span class="c0">One of the major hurdles with AI based music generation is to make it
+                sound
+                meaningful in terms of its style, genre, mood, etc. This research delves into the
+                intricacies of music
+                generation using LSTM (Long Short-Term Memory) networks, a subset of Recurrent Neural
+                Networks (RNNs) known
+                for their ability to capture long-term dependencies and tackle sequence prediction
+                problems (Tovarhenao,
+                2023).</span></p>
+        <p class="c10"><span class="c0">While genres such as pop and some rock are usually interchangeable,
+                genres such as
+                jazz, classical, and folk have very distinct structural differences in melodic content
+                therefore it is
+                important to have training datasets that sufficiently represent those structural
+                differences during training
+                and generation. Our goal was to expand upon the training architecture for generating
+                melodies through
+                introduction of stylistic features and our research aimed to serve as a proof of concept
+                that deep learning
+                models are capable of producing different styles of music based on their training on
+                labeled datasets. By
+                exploring the possibilities offered by deep learning in music generation, we aimed to
+                contribute to the
+                development of AI systems that can truly capture the nuances and characteristics of
+                various musical
+                genres.</span></p>
+        <p class="c14"><span class="c2 c1">Related Work:</span></p>
+        <p class="c6"><span class="c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="c0">To
+                simplify
+                the extraction of musical data, there are now various libraries available for symbolic
+                music generation,
+                such as MusPy, jSymbolic, Magenta Project, and Music21. These libraries facilitate the
+                extraction of musical
+                data from different sources, including symbolic formats like kern, MIDI, MusicXML,
+                LilyPond, and ABC
+                notation, as well as audio formats like WAV or MP3. The extracted data can then be
+                represented in multiple
+                formats, such as note-based, pitch-based, piano-roll, frequency-based, and event-based,
+                requiring specific
+                preprocessing code to convert the data into a usable format for training machine
+                learning models.</span></p>
+        <p class="c10 c17"><span class="c0">The possible research scope for music generation is vast, with the
+                possibility
+                of training not just on melodic content, but also harmonic, velocity, modulation, genre,
+                instrumental
+                patterns, emotionality, rhythm, audio effects, and tempo. Artificial Intelligence
+                already has some influence
+                within the music industry in regards to AI mastering, mixing and restoration software
+                developed by companies
+                such as iZotope (Stewart, 2021.) However, plug-ins which assist with composition have
+                not yet come to market
+                due to the need for further developments. </span></p>
+        <p class="c6"><span class="c9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There have been several
+                types of
+                modeling networks used for music, such as Generative Adversarial Networks, traditional
+                RNNs, and LSTMs. It
+                has been shown that GANs are able to generate piano-rolls with some post-processing
+                required (Yang, 2018.)
+                Generating piano rolls has been a bigger challenge in music generation than monophonic
+                melodies, because of
+                the large number of possible notes per time step and the consideration of multiple
+                instruments. This makes
+                training a lot more challenging and the results not as fruitful. LSTMs have shown a lot
+                of promise in
+                melodic generation specifically. One study aimed to train a multi-layer LSTM on a small
+                dataset of Bach, and
+                found that when rated for authenticity by independent participants, most participants
+                rated the generated
+                melody as being at least musically plausible (Huang, 2016.) Interestingly the
+                researchers found that the
+                model performed better when trained on a single composer than a mixed dataset of general
+                classical music. In
+                another case, in a project conducted at the University of Pennsylvania, a Gated
+                Recurrent Unit was used to
+                generate a multi instrumental track based on a model which was trained on a collection
+            </span><span class="c9">on 174,154</span><span class="c9">&nbsp;midi files. </span><span class="c9">In their
+                study, the
+                researchers chose to utilize the GRU because of its superior capacity to preserve
+                dependencies that extend
+                over longer periods. To train their model, they divided the list representation of each
+                musical piece into
+                subsets and transformed them into input sequences for the training process. They
+                generated the training
+                output by selecting the succeeding note from each dataset. Subsequently, the input
+                sequences underwent an
+                embedded layer(Tham, 2021.) The result however for this multi-instrumental track was
+                very poor, as the model
+                was unable to output a future track that would tastefully compliment the one before it.
+                This resulted in a
+                very clunky piece of music. Overall, it seems that while monophonic music generation
+                research has not
+                reached completion, it has so far yielded better results than polyphonic music
+                generation. </span></p>
+        <p class="c14 c21"><span class="c2 c1"></span></p>
+        <p class="c14"><span class="c2 c1">Approach:</span></p>
+        <p class="c14"><span class="c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="c0">For the
+                goals of our research, we opted to use Long Short-Term Memory, which is an artificial
+                neural network that,
+                unlike a Convolution Network, is capable of processing and predicting temporal data. One
+                of the benefits of
+                using a class of Recurrent Neural Networks is their ability to connect previous
+                information to the current
+                task. Long Short-Term Memory Networks specifically, have been designed to avoid
+                long-term dependency
+                problems that traditional Recurrent Neural Networks succumb to, due to their chain-like
+                repeating structure
+                with a repeating module which contains four network layers. In order for an artificial
+                neural network to
+                learn and predict musical data, you would need a network that is capable of making
+                predictions of musical
+                values that are dependent on previous values(Amidi, 2015.) This is because every musical
+                note in a
+                composition is not chosen at random, but rather is influenced by the previous notes and
+                every note within a
+                composition is somewhat dependent on other notes.</span></p>
+        <p class="c10 c17"><span class="c0">The interval of space between notes represents the ratio difference
+                of frequency
+                between two pitches, which when played in unity or sequence, are then categorized into
+                arpeggios, melodies,
+                and chord modes. These values are symbolically recorded within music scores,
+                alphabetically, or with a MIDI
+                file of notes which represent pitches with a numerical integer value. This means that
+                the pitch and rest
+                data can be simply encoded into a vector of numerical values which represent a standard
+                musical score. It
+                was important to have datasets that sufficiently represent differences between genres in
+                training and
+                generation, so we could generate melodies that are stylistically different based on
+                &nbsp;request. The
+                datasets that we found to be available were in formats of xml, MIDI, and ABC notation.
+                We opted to use MIDI
+                format datasets due to their higher availability and the presence of python libraries
+                such as Mido and
+                Music21 which work with MIDI data. We were able to download datasets of different genres
+                and sizes with the
+                goal of processing the data into vectors; some of these datasets were easily downloaded
+                directly as a zipped
+                file, and other datasets had to be downloaded with HTTP requests by a script ( Krueger,
+                2018.)</span></p>
+        <p class="c10 c17"><span class="c9">Our research led us to a melodic generation project which generated
+                melodies
+                from a model trained on a kern dataset. The code of this research project had promising
+                results and used a
+                generic dataset of kern files to train an LSTM model in melodic generation (Velardo,
+                2020.) We made several
+                modifications to the preprocessing code. Firstly, we converted the code to accept MIDI
+                files instead of kern
+                files. At first glance it seemed as if we had ample amounts of resources to pull from.
+                Our goal was to
+                extract tracks out of each MIDI file that conforms to the standard pitch length
+                requirements we
+                predetermined. Since our goal was melody generation, it was important we did not include
+                very long or
+                irregular length notes that could be representing synthesizer loops, long chords or some
+                textural effects.
+                Our script would open a MIDI file from a genre folder, check if the midi tracks
+                contained notes that had
+                acceptable durations, and then this </span><span class="c3">Music21.Score
+                object</span><span class="c0">&nbsp;would be appended to a list. All of the objects in
+                the list would then be encoded into a
+                string of integers and a mapping file would be created to later decode this data back
+                into its original
+                format. Using this mapping file, all of the data was converted to integer values to be
+                used for training in
+                our LSTM network.</span></p>
+        <p class="c14"><span class="c1 c2">Challenges</span></p>
+        <p class="c10 c17"><span class="c9">&nbsp;During the first stage of preprocessing we realized that
+                almost every
+                track failed our predetermined requirements. This was due to the fact that most of the
+                MIDI tracks were not
+                quantized during the creation and many note lengths were not completed, meaning someone
+                had played a
+                quarter-note from a score but did not hold the note long enough which created a
+                fractional value that is
+                slightly less than a quarter note. The consequence of this was that our script would
+                iterate over a list of
+                hundreds of MIDI files containing dozens of tracks, just to return an empty list. Due to
+                our computational
+                limitations, this was a very time and resource consuming process. We attempted to
+                resolve this issue by
+                dividing each MIDI track into smaller tracks, and this did yield better results, but
+                resulted in a very
+                small final dataset. Due to the combination of lack of computation power and the largely
+                flawed datasets, we
+                decided to expand the note length requirements at a possible cost to the melodic
+                generation quality. We
+                cleaned this data by removing any empty song parts, or song parts which only had a low
+                variation of pitches.
+                Other flaws we encountered with these datasets was that even when tracks labeled as drum
+                and percussion
+                compositions were removed, there was still material which did not have a melodic purpose
+                such as string
+                instruments being used as a rhythmic instrument rather than as melodic or parts of one
+                instrument recorded
+                on multiple tracks leaving some sections of one track blank with a lot of
+                &lsquo;rests&rsquo; being added to
+                the dataset affecting the model to learn large pauses as normal music structure.
+                &nbsp;On a larger scale,
+                this content was very difficult to remove. We ended up using three small datasets due to
+                the computational
+                limitations of being unable to train on a large dataset. For example, in one research
+                project, training on a
+                dataset of Bach took over 22 hours on 15 epochs on a GPU for 21,510 musical
+                tokens(Huang, 2016.) We only
+                used 20 epochs on three datasets which contained about thirty songs each, which took 20
+                minutes to an hour.
+                Because our final datasets were of a smaller size, we were able to manually check them
+                for hidden
+                non-melodic content.</span></p>
+        <p class="c17 c22"><span class="c2 c1">Results:</span></p>
+        <p class="c14"><span class="c0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using our trained model
+                we were able
+                to generate three different midi tracks, representing their respective genres: Pop,
+                Jazz, and Classical.
+                Among these, the pop-trained model yielded the most impressive results, likely because
+                the pop dataset
+                exhibited fewer structural issues that we previously discussed. It also had tracks which
+                are purely melodic
+                which we were able to utilize in training. This resulted in a very impressive generated
+                melody considering
+                the lack of computational power and limited dataset. While our generated Jazz piece did
+                not produce as good
+                of a result sonically, it was very distinct from our pop generation. What distinguishes
+                Jazz from other
+                genres is its varied rhythm, improvisation, and irregular beats (NMAH, 2020), and it
+                seems that our
+                generated melody did complete the task of using more irregular rhythms. Lastly, the
+                classically trained
+                model produced a melody that fell between the pop and Jazz tracks in terms of subjective
+                quality. The
+                classical melody exhibited a distinct style, noticeably different from the pop melody.
+                Our findings suggest
+                that neural networks have the capacity to generate genre-specific melodies, provided
+                that the training data
+                is comprehensive enough. </span></p>
+        <p class="c14"><span class="c2 c1">Potential Improvements:</span></p>
+        <p class="c10 c17"><span class="c0">It is important to note that it might possibly be more advantageous
+                in data
+                collection to use ABC notation rather than MIDI files when computational resources are
+                limited since it is a
+                text format that is ready to be converted into training vectors. However we found that
+                there was not a lot
+                of notation available for the various genres we were looking for other than for
+                classical music. While there
+                are a lot of datasets of MIDI files, most of them have tracks which are unusable for
+                melodic or harmonic
+                analysis, making preprocessing more resource and time consuming, and often resulting in
+                lower quality
+                training data. This was an issue particularly more persistent in non-classical datasets.
+                It is important for
+                future research to have datasets which are geared towards melodic and harmonic
+                training.</span></p>
+        <p class="c6"><span class="c0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Additionally, the models
+                would
+                benefit from a lot more epochs of training than what our computational resources could
+                afford. We had to
+                limit our epochs to a maximum of 25, which still took 25 minutes at least per training
+                run. Lastly, these
+                models can be expanded to incorporate other stylistic choices like mood and
+                tempo.</span></p>
+        <p class="c8 c17"><span class="c0"></span></p>
+        <p class="c14"><span class="c2 c1">Contribution </span></p>
+        <p class="c14"><span class="c0">This research project received equal contribution by partners. Angelina
+                Joy focused
+                on data gathering, preprocessing, research, and presentation. Manthan Bhatt contributed
+                to data structuring,
+                modifying training and generation code. Both partners contributed equally to the
+                research paper. </span></p>
+
+        <p class="c17 c23"><span class="c0">Works Cited </span></p>
+        <p class="c19 c17"><span class="c9">Amidi , Afshine. &ldquo;Recurrent Neural Networks Cheatsheet
+                Star.&rdquo;
+            </span><span class="c3 c16">CS 230 - Recurrent Neural </span></p>
+        <p class="c13 c17"><span class="c3">&nbsp;Networks Cheatsheet</span><span class="c0">, 17 Aug. 2015,
+            </span></p>
+        <p class="c13 c17"><span
+                class="c9">https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks</span><span
+                class="c0">.</span></p>
+        <p class="c19 c17"><span class="c9">Dong, Hao-Wen. </span><span class="c3">USPY: A TOOLKIT FOR SYMBOLIC
+                MUSIC
+                GENERATION</span><span class="c0">. University of </span></p>
+        <p class="c13 c17"><span class="c0">California San Diego, 20 Aug. 2020,
+                https://arxiv.org/pdf/2008.01951v1.pdf.
+            </span></p>
+        <p class="c19 c17"><span class="c9">Huang, Allen, and Raymond Wu. &ldquo;Deep Learning for Music.&rdquo;
+            </span><span class="c3">ArXiv.org</span><span class="c0">, 15 June 2016, </span></p>
+        <p class="c13 c17"><span class="c0">https://arxiv.org/abs/1606.04930. </span></p>
+        <p class="c19 c17"><span class="c9">Krueger, Bernd. &ldquo;Classical Piano.&rdquo; </span><span
+                class="c3">Classical
+                Piano Midi Page - Main Page</span><span class="c0">, 2018, </span></p>
+        <p class="c13 c17"><span class="c0">http://www.piano-midi.de/. </span></p>
+        <p class="c19 c17"><span class="c9">McKenzie, Doug. &ldquo;MIDI.&rdquo; </span><span class="c3">Doug
+                McKenzie Jazz
+                Piano</span><span class="c0">, https://bushgrafts.com/midi/. </span></p>
+        <p class="c10"><span class="c9">MIT. &ldquo;POP909 Music Arrangement.&rdquo; </span><span
+                class="c3">GitHub</span><span class="c0">, 2020, &nbsp;</span></p>
+        <p class="c10"><span class="c0">https://github.com/music-x-lab/POP909-Dataset</span></p>
+        <p class="c12"><span class="c9">Stewart, Ian. &ldquo;AI &amp; Automated Mastering: What to Know.&rdquo;
+            </span><span class="c3">IZotope</span><span class="c0">, IZotope, Inc., 18 Aug. </span></p>
+        <p class="c10"><span class="c0">2022, https://www.izotope.com/en/learn/ai-mastering.html. </span></p>
+        <p class="c19"><span class="c9">Tham, Isaac. &ldquo;Generating Music Using Deep Learning.&rdquo;
+            </span><span class="c3">Medium,</span><span class="c0">&nbsp; Towards Data Science, 30 </span>
+        </p>
+        <p class="c19 c24"><span class="c0">Aug. 2021
+                https://towardsdatascience.com/generating-music-using-deep-learning-cb5843a9d55e.
+            </span></p>
+        <p class="c12"><span class="c9 c15">Tovarhenao</span><span class="c9 c15">, Felipe. &ldquo;Generate
+                Music with an
+                RNN &nbsp;: &nbsp; Tensorflow Core.&rdquo; </span><span class="c3 c15">TensorFlow</span><span
+                class="c0 c15">, 2021, </span></p>
+        <p class="c10"><span class="c9 c15">https://www.tensorflow.org/tutorials/audio/music_generation. </span>
+        </p>
+        <p class="c12"><span class="c9">Velardo , Valerio. &ldquo;Generating Melodies with RNN-LSTM.&rdquo;
+            </span><span class="c3">GitHub</span><span class="c0">, 2020, </span></p>
+        <p class="c10"><span class="c0">https://github.com/musikalkemist/generating-melodies-with-rnn-lstm
+            </span></p>
+        <p class="c19"><span class="c9">Yang, Yi-Hsuan. </span><span class="c3 c16">CONVOLUTIONAL GENERATIVE
+                ADVERSARIAL
+                NETWORKS WITH</span></p>
+        <p class="c19"><span class="c3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BINARY NEURONS FOR POLYPHONIC
+                MUSIC
+                GENERATION</span><span class="c0">. Research Center for </span></p>
+        <p class="c13"><span class="c0">IT Innovation, Oct. 2018, https://arxiv.org/pdf/1804.09399v3.pdf.
+            </span></p>
+        <p class="c19"><span class="c9">&ldquo;What Is Jazz?&rdquo; </span><span class="c3">National Museum of
+                American
+                History</span><span class="c0">, 10 Mar. 2020, </span></p>
+        <p class="c13"><span class="c0">https://americanhistory.si.edu/smithsonian-jazz/education/what-jazz.
+            </span></p>
+        <p class="c11"><span class="c0"></span></p>
+    </div>
+
+</div>

@@ -1,0 +1,67 @@
+h1{
+    text-align: center;
+    padding: 7vh;
+}
+.about-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    gap: 10vw;
+    /* padding-top: 1vh; */
+    align-items: flex-start;
+    text-align: center;
+}
+
+.about-card {
+    height: 45vh;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #574185 0%, #0F032A 100%);
+    ;
+    border-radius: 15px;
+}
+
+.card-img {
+    width: auto;
+    max-height: 75%;
+    object-fit: cover;
+    border-radius: 15px;
+    mask-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 5%, rgb(0, 0, 0) 74%);
+}
+
+.card-name {
+    translate: 0 -60px;
+}
+
+.card-name p {
+    line-height: 1;
+    font-size: 9px;
+}
+
+.socials {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    translate: 0px -20px;
+    
+}
+
+.social{
+    display: flex;
+    background-color: transparent;
+    border: solid 2px white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+
+ion-icon {
+    padding: 5px;
+    color: white;
+    /* color: #C83C56; */
+}
